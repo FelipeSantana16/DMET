@@ -11,6 +11,7 @@
 		382C633C24E6D57500784C6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382C633B24E6D57500784C6F /* SceneDelegate.swift */; };
 		382C634324E6D57800784C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382C634224E6D57800784C6F /* Assets.xcassets */; };
 		382C634624E6D57800784C6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382C634424E6D57800784C6F /* LaunchScreen.storyboard */; };
+		382C635024E6D9FC00784C6F /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382C634F24E6D9FC00784C6F /* CatalogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		382C634224E6D57800784C6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		382C634524E6D57800784C6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		382C634724E6D57800784C6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		382C634F24E6D9FC00784C6F /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,8 @@
 		382C633824E6D57500784C6F /* DMET */ = {
 			isa = PBXGroup;
 			children = (
+				382C634E24E6D9AC00784C6F /* Controller */,
+				382C634D24E6D99F00784C6F /* View */,
 				382C633924E6D57500784C6F /* AppDelegate.swift */,
 				382C633B24E6D57500784C6F /* SceneDelegate.swift */,
 				382C634224E6D57800784C6F /* Assets.xcassets */,
@@ -59,6 +63,21 @@
 				382C634724E6D57800784C6F /* Info.plist */,
 			);
 			path = DMET;
+			sourceTree = "<group>";
+		};
+		382C634D24E6D99F00784C6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		382C634E24E6D9AC00784C6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				382C634F24E6D9FC00784C6F /* CatalogViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				382C635024E6D9FC00784C6F /* CatalogViewController.swift in Sources */,
 				382C633A24E6D57500784C6F /* AppDelegate.swift in Sources */,
 				382C633C24E6D57500784C6F /* SceneDelegate.swift in Sources */,
 			);
