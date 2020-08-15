@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		380E98CC24E6E75E00F5B480 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 380E98CB24E6E75E00F5B480 /* .swiftlint.yml */; };
 		382C633A24E6D57500784C6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382C633924E6D57500784C6F /* AppDelegate.swift */; };
 		382C633C24E6D57500784C6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382C633B24E6D57500784C6F /* SceneDelegate.swift */; };
 		382C634324E6D57800784C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382C634224E6D57800784C6F /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		380E98CB24E6E75E00F5B480 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		382C633624E6D57500784C6F /* DMET.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMET.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382C633924E6D57500784C6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		382C633B24E6D57500784C6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +40,7 @@
 		382C632D24E6D57500784C6F = {
 			isa = PBXGroup;
 			children = (
+				380E98CB24E6E75E00F5B480 /* .swiftlint.yml */,
 				382C633824E6D57500784C6F /* DMET */,
 				382C633724E6D57500784C6F /* Products */,
 			);
@@ -90,7 +93,7 @@
 				382C633224E6D57500784C6F /* Sources */,
 				382C633324E6D57500784C6F /* Frameworks */,
 				382C633424E6D57500784C6F /* Resources */,
-				380E98CA24E6E61900F5B480 /* ShellScript */,
+				380E98CA24E6E61900F5B480 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -139,6 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				380E98CC24E6E75E00F5B480 /* .swiftlint.yml in Resources */,
 				382C634624E6D57800784C6F /* LaunchScreen.storyboard in Resources */,
 				382C634324E6D57800784C6F /* Assets.xcassets in Resources */,
 			);
@@ -147,7 +151,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		380E98CA24E6E61900F5B480 /* ShellScript */ = {
+		380E98CA24E6E61900F5B480 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -156,6 +160,7 @@
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (

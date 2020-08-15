@@ -1,0 +1,10 @@
+
+disabled_rules:
+ - trailing_whitespace
+ 
+line_length: 200
+
+vertical_whitespace:
+    max_empty_lines: 2
+ 
+force_cast: warning
