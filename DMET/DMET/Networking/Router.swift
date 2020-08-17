@@ -77,37 +77,31 @@ enum Router {
                 
                 
                 
-                guard let metaDataDate = metaDataDate else {
+                if let metaDataDate = metaDataDate {
                     
-                    print("Empty MetadataDate")
-                    fatalError()
+                    let df = DateFormatter()
+                    df.dateFormat = "yyyy-MM-dd"
+                    let date = df.string(from: metaDataDate)
+                    
+                    queryItems.append(URLQueryItem(name: "metadataDate", value: date))
+                    
                 }
                 
-                let df = DateFormatter()
-                df.dateFormat = "yyyy-MM-dd"
-                let date = df.string(from: metaDataDate)
-                
-                
-                guard let departmentsIds = departmentsIds else {
-                    
-                    print("Empty Departments Ids")
-                    fatalError()
-                }
-            
-                var ids = ""
-                for i in 0...departmentsIds.count {
-                    
-                    if(i == departmentsIds.count){
-                        ids += String(departmentsIds[i])
+                if let departmentsIds = departmentsIds {
+                   
+                    var ids = ""
+                    for i in 0...departmentsIds.count {
+                        
+                        if(i == departmentsIds.count){
+                            ids += String(departmentsIds[i])
+                        }
+                        
+                        ids += String(departmentsIds[i]) + "|"
                     }
                     
-                    ids += String(departmentsIds[i]) + "|"
+                    queryItems.append(URLQueryItem(name: "departmentsIds", value: ids))
+                   
                 }
-            
-                queryItems.append(contentsOf: [
-                    URLQueryItem(name: "metadataDate", value: date),
-                    URLQueryItem(name: "departmentsIds", value: ids)
-                ])
                 
                 break
             
@@ -119,115 +113,107 @@ enum Router {
             
             case .search(let q, let isHighlight, let departmentId, let isOnView, let artistOrCulture, let medium, let hasImage, let geoLocation, let dateBeginAndDateEnd):
                 
-                guard let isHighlight = isHighlight else {
-                    
-                    print("Empty isHighlight")
-                    fatalError()
-                    
-                }
                 
-                let highlight = String(isHighlight)
-                
-                guard let departmentId = departmentId else {
+                if let isHighlight = isHighlight {
                     
-                    print("Empty departmentId")
-                    fatalError()
-                }
-                
-                let id = String(departmentId)
-                
-                guard let isOnView = isOnView else {
+                    let highlight = String(isHighlight)
                     
-                    print("Empty isOnView")
-                    fatalError()
+                    queryItems.append(URLQueryItem(name: "isHighlight", value:highlight))
                     
                 }
                 
-                let view = String(isOnView)
-                
-                guard let artistOrCulture = artistOrCulture else {
+                if let departmentId = departmentId {
                     
-                    print("Empty artistOrCulture")
-                    fatalError()
+                    let id = String(departmentId)
                     
-                }
-                
-                let artistCulture = String(artistOrCulture)
-                
-                guard let medium = medium else {
-                    
-                    print("Empty medium")
-                    fatalError()
+                    queryItems.append(URLQueryItem(name: "departmentId", value: id))
                     
                 }
                 
-                var mediumStr = ""
-                
-                for i in 0...medium.count {
+                if let isOnView = isOnView {
                     
-                    if(i == medium.count){
+                    let view = String(isOnView)
+                    
+                    queryItems.append(URLQueryItem(name: "isOnView", value: view))
+                }
+                
+                
+                
+                if let artistOrCulture = artistOrCulture {
+                    
+                    let artistCulture = String(artistOrCulture)
+                    
+                    queryItems.append(URLQueryItem(name: "artistOrCulture", value: artistCulture))
+                    
+                }
+                
+                
+                
+                if let medium = medium {
+                    
+                    var mediumStr = ""
+                    
+                    for i in 0...medium.count {
                         
-                        mediumStr += medium[i]
+                        if(i == medium.count){
+                            
+                            mediumStr += medium[i]
+                            
+                        }
+                        
+                        mediumStr += medium[i] + " | "
                         
                     }
                     
-                    mediumStr += medium[i] + " | "
+                    queryItems.append(URLQueryItem(name: "medium", value: mediumStr))
                     
                 }
                 
-                guard let hasImage = hasImage else {
-                    
-                    print("Empty hasImage")
-                    fatalError()
-                    
-                }
                 
-                let image = String(hasImage)
                 
-                guard let geoLocation = geoLocation else {
+                if let hasImage = hasImage {
                     
-                    print("Empty geoLocation")
-                    fatalError()
-                }
-                
-                var location = ""
-                
-                for i in 0...geoLocation.count {
+                    let image = String(hasImage)
                     
-                    location += geoLocation[i] + " | "
+                    
+                    queryItems.append(URLQueryItem(name: "hasImage", value: image))
                     
                 }
                 
-                guard let dateBeginAndEndDate = dateBeginAndDateEnd else {
-                    
-                    print("Empty dateBeginAndEndDate")
-                    fatalError()
-                    
-                }
-                
-                let dateBegin = String(dateBeginAndEndDate[0])
-                let dateEnd = String(dateBeginAndEndDate[1])
                 
                 
-                guard let q = q else {
+                if let geoLocation = geoLocation {
                     
-                    print("Empty Query")
-                    fatalError()
+                    var location = ""
+                    
+                    for i in 0...geoLocation.count {
+                        
+                        location += geoLocation[i] + " | "
+                        
+                    }
+                    
+                    queryItems.append(URLQueryItem(name: "geoLocation", value: location))
                     
                 }
                 
-                queryItems.append(contentsOf: [
-                    URLQueryItem(name: "isHighlight", value: highlight),
-                    URLQueryItem(name: "departmentId", value: id),
-                    URLQueryItem(name: "isOnView", value: view),
-                    URLQueryItem(name: "artistOrCulture", value: artistCulture),
-                    URLQueryItem(name: "medium", value: mediumStr),
-                    URLQueryItem(name: "hasImage", value: image),
-                    URLQueryItem(name: "geoLocation", value: location),
-                    URLQueryItem(name: "dateBegin", value: dateBegin),
-                    URLQueryItem(name: "dateEnd", value: dateEnd),
-                    URLQueryItem(name: "q", value: q)
-                ])
+                
+                
+                if let dateBeginAndEndDate = dateBeginAndDateEnd {
+                    
+                    let dateBegin = String(dateBeginAndEndDate[0])
+                    let dateEnd = String(dateBeginAndEndDate[1])
+                    
+                    queryItems.append(URLQueryItem(name: "dateBegin", value: dateBegin))
+                    queryItems.append(URLQueryItem(name: "dateEnd", value: dateEnd))
+                    
+                }
+                
+                
+                if let q = q {
+                    
+                    queryItems.append(URLQueryItem(name: "q", value: q))
+                    
+                }
                 
                 break
             
