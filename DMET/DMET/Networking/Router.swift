@@ -35,33 +35,33 @@ enum Router {
         
         switch self {
             
-            case .getAllArtObjects:
-                    
+        case .getAllArtObjects:
+                
+            return "/public/collection/v1/objects"
+            
+            
+        case .getArtObject(let objectId):
+            
+            if let objectId = objectId {
+            
+                return "/public/collection/v1/objects/\(objectId)"
+                
+            } else {
+                
                 return "/public/collection/v1/objects"
-                
-                
-            case .getArtObject(let objectId):
-                
-                if let objectId = objectId{
-                
-                    return "/public/collection/v1/objects/\(objectId)"
-                    
-                } else {
-                    
-                    return "/public/collection/v1/objects"
-                
-                }
-                
-                
-            case .getAllArtDepartments:
-                
-                return "/public/collection/v1/departments"
             
-                
-            case .search:
-                
-                return "/public/collection/v1/search"
+            }
             
+            
+        case .getAllArtDepartments:
+            
+            return "/public/collection/v1/departments"
+        
+            
+        case .search:
+            
+            return "/public/collection/v1/search"
+        
         }
         
     }
@@ -73,150 +73,144 @@ enum Router {
         
         switch self {
             
-            case .getAllArtObjects(let metaDataDate, let departmentsIds):
+        case .getAllArtObjects(let metaDataDate, let departmentsIds):
+            
+            
+            if let metaDataDate = metaDataDate {
                 
+                let df = DateFormatter()
+                df.dateFormat = "yyyy-MM-dd"
+                let date = df.string(from: metaDataDate)
                 
+                queryItems.append(URLQueryItem(name: "metadataDate", value: date))
                 
-                if let metaDataDate = metaDataDate {
+            }
+            
+            if let departmentsIds = departmentsIds {
+               
+                var ids = ""
+                for i in 0...departmentsIds.count {
                     
-                    let df = DateFormatter()
-                    df.dateFormat = "yyyy-MM-dd"
-                    let date = df.string(from: metaDataDate)
-                    
-                    queryItems.append(URLQueryItem(name: "metadataDate", value: date))
-                    
-                }
-                
-                if let departmentsIds = departmentsIds {
-                   
-                    var ids = ""
-                    for i in 0...departmentsIds.count {
-                        
-                        if(i == departmentsIds.count){
-                            ids += String(departmentsIds[i])
-                        }
-                        
-                        ids += String(departmentsIds[i]) + "|"
+                    if(i == departmentsIds.count) {
+                        ids += String(departmentsIds[i])
                     }
                     
-                    queryItems.append(URLQueryItem(name: "departmentsIds", value: ids))
-                   
+                    ids += String(departmentsIds[i]) + "|"
                 }
                 
-                break
+                queryItems.append(URLQueryItem(name: "departmentsIds", value: ids))
+               
+            }
             
-            case .getArtObject:
-                break
+            break
+        
+        case .getArtObject:
+            break
+        
+        case .getAllArtDepartments:
+            break
+        
+        case .search(let q, let isHighlight, let departmentId, let isOnView, let artistOrCulture, let medium, let hasImage, let geoLocation, let dateBeginAndDateEnd):
             
-            case .getAllArtDepartments:
-                break
             
-            case .search(let q, let isHighlight, let departmentId, let isOnView, let artistOrCulture, let medium, let hasImage, let geoLocation, let dateBeginAndDateEnd):
+            if let isHighlight = isHighlight {
                 
+                let highlight = String(isHighlight)
                 
-                if let isHighlight = isHighlight {
-                    
-                    let highlight = String(isHighlight)
-                    
-                    queryItems.append(URLQueryItem(name: "isHighlight", value:highlight))
-                    
-                }
+                queryItems.append(URLQueryItem(name: "isHighlight", value: highlight))
                 
-                if let departmentId = departmentId {
-                    
-                    let id = String(departmentId)
-                    
-                    queryItems.append(URLQueryItem(name: "departmentId", value: id))
-                    
-                }
+            }
+            
+            if let departmentId = departmentId {
                 
-                if let isOnView = isOnView {
-                    
-                    let view = String(isOnView)
-                    
-                    queryItems.append(URLQueryItem(name: "isOnView", value: view))
-                }
+                let id = String(departmentId)
                 
+                queryItems.append(URLQueryItem(name: "departmentId", value: id))
                 
+            }
+            
+            if let isOnView = isOnView {
                 
-                if let artistOrCulture = artistOrCulture {
-                    
-                    let artistCulture = String(artistOrCulture)
-                    
-                    queryItems.append(URLQueryItem(name: "artistOrCulture", value: artistCulture))
-                    
-                }
+                let view = String(isOnView)
                 
+                queryItems.append(URLQueryItem(name: "isOnView", value: view))
+            }
+            
+            
+            if let artistOrCulture = artistOrCulture {
                 
+                let artistCulture = String(artistOrCulture)
                 
-                if let medium = medium {
+                queryItems.append(URLQueryItem(name: "artistOrCulture", value: artistCulture))
+                
+            }
+            
+            
+            if let medium = medium {
+                
+                var mediumStr = ""
+                
+                for i in 0...medium.count {
                     
-                    var mediumStr = ""
-                    
-                    for i in 0...medium.count {
+                    if(i == medium.count) {
                         
-                        if(i == medium.count){
-                            
-                            mediumStr += medium[i]
-                            
-                        }
-                        
-                        mediumStr += medium[i] + " | "
+                        mediumStr += medium[i]
                         
                     }
                     
-                    queryItems.append(URLQueryItem(name: "medium", value: mediumStr))
+                    mediumStr += medium[i] + " | "
                     
                 }
                 
+                queryItems.append(URLQueryItem(name: "medium", value: mediumStr))
                 
-                
-                if let hasImage = hasImage {
-                    
-                    let image = String(hasImage)
-                    
-                    
-                    queryItems.append(URLQueryItem(name: "hasImage", value: image))
-                    
-                }
-                
-                
-                
-                if let geoLocation = geoLocation {
-                    
-                    var location = ""
-                    
-                    for i in 0...geoLocation.count {
-                        
-                        location += geoLocation[i] + " | "
-                        
-                    }
-                    
-                    queryItems.append(URLQueryItem(name: "geoLocation", value: location))
-                    
-                }
-                
-                
-                
-                if let dateBeginAndEndDate = dateBeginAndDateEnd {
-                    
-                    let dateBegin = String(dateBeginAndEndDate[0])
-                    let dateEnd = String(dateBeginAndEndDate[1])
-                    
-                    queryItems.append(URLQueryItem(name: "dateBegin", value: dateBegin))
-                    queryItems.append(URLQueryItem(name: "dateEnd", value: dateEnd))
-                    
-                }
-                
-                
-                if let q = q {
-                    
-                    queryItems.append(URLQueryItem(name: "q", value: q))
-                    
-                }
-                
-                break
+            }
             
+            
+            if let hasImage = hasImage {
+                
+                let image = String(hasImage)
+                
+                
+                queryItems.append(URLQueryItem(name: "hasImage", value: image))
+                
+            }
+            
+            
+            if let geoLocation = geoLocation {
+                
+                var location = ""
+                
+                for i in 0...geoLocation.count {
+                    
+                    location += geoLocation[i] + " | "
+                    
+                }
+                
+                queryItems.append(URLQueryItem(name: "geoLocation", value: location))
+                
+            }
+            
+            
+            if let dateBeginAndEndDate = dateBeginAndDateEnd {
+                
+                let dateBegin = String(dateBeginAndEndDate[0])
+                let dateEnd = String(dateBeginAndEndDate[1])
+                
+                queryItems.append(URLQueryItem(name: "dateBegin", value: dateBegin))
+                queryItems.append(URLQueryItem(name: "dateEnd", value: dateEnd))
+                
+            }
+            
+            
+            if let q = q {
+                
+                queryItems.append(URLQueryItem(name: "q", value: q))
+                
+            }
+            
+            break
+        
         }
         
         return queryItems
@@ -263,7 +257,6 @@ enum Router {
     var urlRequest: URLRequest? {
         
         guard let url = self.url else { return nil }
-        
         var request = URLRequest(url: url)
         request.httpMethod = self.method
         

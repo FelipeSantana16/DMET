@@ -15,10 +15,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        let navigationController = UINavigationController(rootViewController: CatalogViewController())
+        
+        navigationController.navigationBar.barTintColor = UIColor(displayP3Red: 52/255, green: 52/255, blue: 52/255, alpha: 1)
+        
+        navigationController.navigationBar.isTranslucent = false
+        
+        navigationController.navigationBar.shadowImage = UIImage()
+        
+        navigationController.navigationBar.isHidden = false
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window?.windowScene = windowScene
-        window?.rootViewController = CatalogViewController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
     }

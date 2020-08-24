@@ -32,12 +32,12 @@ struct ServiceLayer {
             
             switch response.statusCode {
                 
-                case 200:
-                    
-                completion(.success(data))
-                    
-                default:
-                    completion(.failure(.unknowError(statusCode: 400)))
+            case 200:
+                
+            completion(.success(data))
+                
+            default:
+                completion(.failure(.unknowError(statusCode: 400)))
                     
             }
             

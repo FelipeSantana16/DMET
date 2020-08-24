@@ -1,10 +1,17 @@
 
 disabled_rules:
  - trailing_whitespace
- 
-line_length: 200
+ - identifier_name
+ - closure_parameter_position
+ - control_statement
+ - unused_optional_binding
+ - unneeded_break_in_switch
+ - force_cast
+ - cyclomatic_complexity
+ - void_return
+ - function_body_length
+line_length: 250
 
 vertical_whitespace:
     max_empty_lines: 2
  
-force_cast: warning
